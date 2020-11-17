@@ -185,7 +185,7 @@ managed_processes = {
   "sensord": ("selfdrive/sensord", ["./sensord"]),
   "clocksd": ("selfdrive/clocksd", ["./clocksd"]),
   "gpsd": ("selfdrive/sensord", ["./gpsd"]),
-  "updated": "selfdrive.updated",
+#  "updated": "selfdrive.updated",
   "dmonitoringmodeld": ("selfdrive/modeld", ["./dmonitoringmodeld"]),
   "modeld": ("selfdrive/modeld", ["./modeld"]),
   "rtshield": "selfdrive.rtshield",
@@ -219,7 +219,7 @@ persistent_processes = [
 
 if not PC:
   persistent_processes += [
-    'updated',
+#    'updated',
     'logcatd',
     'tombstoned',
     'sensord',
@@ -568,6 +568,7 @@ def main():
     ("MadModeEnabled", "1"),
     ("AutoLaneChangeEnabled", "0"),
     ("IsDriverViewEnabled", "0"),
+    ("PutPrebuilt", "0"),
   ]
 
   # set unset params

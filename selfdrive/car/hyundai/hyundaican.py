@@ -17,7 +17,7 @@ def create_lkas11(packer, frame, car_fingerprint, apply_steer, steer_req,
   values["CF_Lkas_ActToi"] = steer_req
   values["CF_Lkas_MsgCount"] = frame % 0x10
 
-  if car_fingerprint in [CAR.SONATA, CAR.PALISADE, CAR.SONATA_HEV, CAR.SANTA_FE, CAR.KONA_EV, CAR.NIRO_EV, CAR.IONIQ_EV]:
+  if car_fingerprint in [CAR.SONATA, CAR.PALISADE, CAR.SONATA_HEV, CAR.SANTA_FE, CAR.KONA_EV, CAR.KONA_HEV, CAR.NIRO_EV, CAR.IONIQ_EV]:
     values["CF_Lkas_LdwsActivemode"] = int(left_lane) + (int(right_lane) << 1)
     values["CF_Lkas_LdwsOpt_USM"] = 2
 
@@ -65,7 +65,7 @@ def create_clu11(packer, frame, bus, clu11, button, speed):
   values = clu11
   values["CF_Clu_CruiseSwState"] = button
   values["CF_Clu_Vanz"] = speed
-  values["CF_Clu_AliveCnt1"] = frame // 2 % 0x10
+  values["CF_Clu_AliveCnt1"] = frame % 0x10
   return packer.make_can_msg("CLU11", bus, values)
 
 def create_lfa_mfa(packer, frame, enabled):

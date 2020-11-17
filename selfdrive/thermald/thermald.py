@@ -36,8 +36,8 @@ NetworkType = log.ThermalData.NetworkType
 NetworkStrength = log.ThermalData.NetworkStrength
 CURRENT_TAU = 15.   # 15s time constant
 CPU_TEMP_TAU = 5.   # 5s time constant
-DAYS_NO_CONNECTIVITY_MAX = 7  # do not allow to engage after a week without internet
-DAYS_NO_CONNECTIVITY_PROMPT = 4  # send an offroad prompt after 4 days with no internet
+DAYS_NO_CONNECTIVITY_MAX = 999  # do not allow to engage after a week without internet
+DAYS_NO_CONNECTIVITY_PROMPT = 999  # send an offroad prompt after 4 days with no internet
 DISCONNECT_TIMEOUT = 5.  # wait 5 seconds before going offroad after disconnect so you get an alert
 
 prev_offroad_states: Dict[str, Tuple[bool, Optional[str]]] = {}
@@ -45,6 +45,7 @@ prev_offroad_states: Dict[str, Tuple[bool, Optional[str]]] = {}
 LEON = False
 last_eon_fan_val = None
 
+prebuiltfile = '/data/openpilot/prebuilt'
 
 def get_thermal_config():
   # (tz, scale)
@@ -394,6 +395,12 @@ def thermald_thread():
         off_ts = sec_since_boot()
         os.system('echo powersave > /sys/class/devfreq/soc:qcom,cpubw/governor')
 
+    prebuiltlet = Params().get('PutPrebuilt') == b'1'
+    if not os.path.isfile(prebuiltfile) and prebuiltlet:
+      os.system("cd /data/openpilot; touch prebuilt")
+    elif os.path.isfile(prebuiltfile) and not prebuiltlet:
+      os.system("cd /data/openpilot; rm -f prebuilt")            
+        
     # Offroad power monitoring
     pm.calculate(health)
     msg.thermal.offroadPowerUsage = pm.get_power_used()

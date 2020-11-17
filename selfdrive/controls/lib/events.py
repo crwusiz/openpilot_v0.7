@@ -430,7 +430,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   EventName.manualRestart: {
     ET.WARNING: Alert(
       "핸들을 잡아주세요",
-      "수동으로 재활성화하세요",
+      "수동으로 재활성하세요",
       AlertStatus.userPrompt, AlertSize.mid,
       Priority.LOW, VisualAlert.none, AudibleAlert.none, 0., 0., .2),
   },
@@ -586,7 +586,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, Callable[[Any, messaging.SubMaster, boo
   EventName.sensorDataInvalid: {
     ET.PERMANENT: Alert(
       "장치 센서 오류",
-      "장치 점검후 재가동세요",
+      "장치 점검후 재가동하세요",
       AlertStatus.normal, AlertSize.mid,
       Priority.LOWER, VisualAlert.none, AudibleAlert.none, 0., 0., .2, creation_delay=1.),
     ET.NO_ENTRY: NoEntryAlert("장치 센서 오류"),
