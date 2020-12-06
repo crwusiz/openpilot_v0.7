@@ -160,6 +160,7 @@ typedef struct UIScene {
   cereal::DriverState::Reader driver_state;
   cereal::DMonitoringState::Reader dmonitoring_state;
   cereal::ModelData::Reader model;
+  cereal::CarState::GearShifter getGearShifter;  
   float left_lane_points[MODEL_PATH_DISTANCE];
   float path_points[MODEL_PATH_DISTANCE];
   float right_lane_points[MODEL_PATH_DISTANCE];
