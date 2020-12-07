@@ -167,8 +167,8 @@ class CarInterface(CarInterfaceBase):
     ret.longitudinalTuning.deadzoneV = [0., 0.02]
 
     # steer, gas, brake limitations VS speed
-    ret.steerMaxBP = [30. * CV.KPH_TO_MS, 50. * CV.KPH_TO_MS]
-    ret.steerMaxV = [1., 1.5]
+    ret.steerMaxBP = [0.]
+    ret.steerMaxV = [1.0]
     ret.gasMaxBP = [0., 10., 40.]
     ret.gasMaxV = [0.5, 0.5, 0.5]
     ret.brakeMaxBP = [0., 20.]
