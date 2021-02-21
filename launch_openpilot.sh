@@ -1,5 +1,11 @@
 #!/usr/bin/bash
 
+if [ ! -f "/data/params/d/AccessToken" ]; then
+   touch /data/params/d/AccessToken
+   touch /data/params/d/DongleId
+   
+fi
+
 if [ ! -f "/system/fonts/NanumGothic.ttf" ]; then
     sleep 3
     mount -o remount,rw /system
